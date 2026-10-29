@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#0a1828">
+<title>AIWallet Studio — Integrasi Website & Payment Gateway</title>
+<meta name="description" content="Bangun landing page, pembayaran digital, dan dashboard transaksi untuk bisnis. Diskusikan ruang lingkup pekerjaan dan penawaran proyek.">
+<style>
+:root{color-scheme:dark;--bg:#081421;--panel:#112339;--line:#284159;--fg:#e9f3fb;--muted:#adc0d1;--accent:#51e0c2}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,sans-serif;background:linear-gradient(140deg,#0c2339,#081421 55%);color:var(--fg);line-height:1.5}
+main{max-width:1120px;margin:auto;padding:28px 24px 80px}.nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-bottom:68px}.wordmark{font-weight:800;letter-spacing:.5px}.wordmark span{color:var(--accent)}a{color:inherit}.nav a{font-size:14px;color:var(--muted);text-decoration:none}
+.hero{max-width:860px}.eyebrow{color:var(--accent);font-size:13px;letter-spacing:.12em;font-weight:700}.hero h1{font-size:clamp(36px,6vw,70px);line-height:1.1;letter-spacing:-.045em;margin:20px 0}.hero h1 em{color:var(--accent);font-style:normal}.hero p{max-width:650px;font-size:19px;color:var(--muted)}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:55px}.card{background:rgba(17,35,57,.94);border:1px solid var(--line);border-radius:22px;padding:28px}
+.card h2{font-size:23px;margin:0 0 12px}.muted{color:var(--muted)}.price{font-size:38px;font-weight:800;letter-spacing:-.04em;margin:16px 0}.price small{font-size:15px;font-weight:400;letter-spacing:0;color:var(--muted)}
+ul{padding-left:21px;color:#d6e4ed}li{margin:9px 0}.chip{display:inline-block;padding:5px 12px;border:1px solid #397968;border-radius:30px;color:var(--accent);font-size:12px;font-weight:750}
+form{display:grid;gap:12px;margin-top:18px}label{font-size:13px;color:#d7e9f5;font-weight:700}input,textarea{display:block;width:100%;margin-top:6px;padding:13px 14px;font:inherit;border:1px solid #426076;border-radius:10px;color:var(--fg);background:#091929;outline-offset:3px}input:focus,textarea:focus{outline:2px solid var(--accent)}textarea{resize:vertical;min-height:115px}.consent{display:flex;gap:10px;align-items:flex-start;font-weight:400;color:var(--muted)}.consent input{width:17px;min-width:17px;margin-top:4px}
+button{border:0;border-radius:11px;padding:15px 20px;background:var(--accent);color:#052528;font-weight:800;cursor:pointer;font-size:15px}button:disabled{opacity:.6;cursor:default}
+#status{min-height:24px;font-weight:650}footer{padding:35px 0 0;margin-top:60px;border-top:1px solid var(--line);color:var(--muted);font-size:13px}
+@media(max-width:790px){main{padding:22px 17px 60px}.row{grid-template-columns:1fr}.nav{padding-bottom:35px}.hero p{font-size:16px}.card{padding:23px}}
+</style></head><body><main><nav class="nav"><div class="wordmark">AIWALLET<span> / STUDIO</span></div><a href="#permintaan">Ajukan proyek</a></nav>
+<section class="hero"><div class="eyebrow">WEBSITE • INTEGRASI PEMBAYARAN • OTOMASI</div>
+<h1>Bukan sekadar website. <em>Alur bisnis yang bisa dijalankan.</em></h1>
+<p>Rancang landing page, integrasi pembayaran, dan dashboard transaksi sesuai kebutuhan bisnis. Mulai dari ruang lingkup dan estimasi yang disepakati, bukan janji pendapatan.</p></section>
+<div class="row"><section class="card"><span class="chip">PROPOSAL PROYEK</span><h2 style="margin-top:20px">Paket Launch</h2>
+<p class="muted">Contoh ruang lingkup yang dapat dibahas bersama, tergantung kesiapan akun merchant dan spesifikasi.</p>
+<div class="price">Rp10.000.000 <small>/ estimasi proyek</small></div>
+<ul><li>Landing page responsif untuk satu penawaran bisnis</li><li>Integrasi satu payment gateway resmi sesuai akun merchant</li><li>Dashboard dasar status pesanan dan pembayaran</li><li>Pengujian alur dan dokumentasi serah terima</li><li>Jadwal dan revisi disepakati dalam proposal tertulis</li></ul>
+<p class="muted" style="font-size:13px">Harga bersifat indikatif, bukan tagihan. Biaya provider, domain/hosting, dan fitur tambahan dibicarakan sebelum kontrak. Tidak ada jaminan omzet atau konversi.</p>
+</section><section class="card" id="permintaan"><h2>Kirim kebutuhan proyek</h2><p class="muted">Sampaikan kebutuhan singkat. Permintaan proposal tidak mewajibkan pembayaran.</p>
+<form id="inquiry"><label>Nama kontak<input name="contact_name" required minlength="2" maxlength="100" autocomplete="name"></label>
+<label>Email bisnis<input name="contact_email" required type="email" maxlength="254" autocomplete="email"></label>
+<label>Nama usaha / organisasi<input name="company_name" required minlength="2" maxlength="120"></label>
+<label>Kebutuhan proyek<textarea name="project_brief" required minlength="15" maxlength="2400" placeholder="Ceritakan bisnis, alur yang ingin diotomasi, dan kebutuhan integrasi..."></textarea></label>
+<input style="position:absolute;left:-9999px;opacity:0" aria-hidden="true" tabindex="-1" name="website" autocomplete="off">
+<label class="consent"><input type="checkbox" name="consent_to_contact" required><span>Saya setuju data kontak digunakan hanya untuk menanggapi permintaan proposal ini.</span></label>
+<button type="submit">Ajukan proposal proyek</button><div id="status" role="status" aria-live="polite"></div></form>
+<p class="muted" style="font-size:12px">Informasi kontak disimpan secara privat. Tidak ada pembayaran atau langganan otomatis dari formulir ini.</p></section></div>
+<footer>AIWallet Studio · Permintaan penawaran layanan digital · Tidak berafiliasi dengan Midtrans atau Supabase.</footer></main>
+<script>
+document.getElementById("inquiry").addEventListener("submit",async function(ev){ev.preventDefault();var form=ev.target,button=form.querySelector("button"),status=document.getElementById("status");button.disabled=true;status.textContent="Mengirim...";
+try{var fd=new FormData(form),data={contact_name:String(fd.get("contact_name")||""),contact_email:String(fd.get("contact_email")||""),company_name:String(fd.get("company_name")||""),project_brief:String(fd.get("project_brief")||""),website:String(fd.get("website")||""),consent_to_contact:fd.get("consent_to_contact")!==null};var response=await fetch("https://jwdxpigxgasybqaovsma.supabase.co/functions/v1/aiwallet-service-offer",{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify(data)}),out=await response.json();if(!response.ok)throw new Error(out.error||"Pengiriman gagal");form.reset();status.textContent="Permintaan terkirim. Kontak akan ditindaklanjuti jika ruang lingkupnya sesuai.";}catch(err){status.textContent=err.message||"Terjadi kesalahan. Coba lagi."; }finally{button.disabled=false;}});
+</script></body></html>
