@@ -101,4 +101,28 @@ input.addEventListener("change",()=>{
 });
 window.addEventListener("pagehide",cleanup,{once:true});
 })();
-</script></body></html>
+</script>
+<script data-aiwallet-funnel="v1">
+/* AIWALLET_ANONYMOUS_FUNNEL_V1: counts only fixed event names; no cookies or identity. */
+(function(){
+  const endpoint='https://aiwallet-cloud-studio.higgsfield.app/api/funnel/event';
+  const page="github_video";
+  function track(event){
+    if(!['page_view','cta_click','form_start','form_success','form_error'].includes(event))return;
+    fetch(endpoint,{method:'POST',mode:'cors',credentials:'omit',keepalive:true,
+      headers:{'content-type':'application/json'},body:JSON.stringify({page,event})}).catch(()=>{});
+  }
+  window.aiwalletTrackFunnel=track;
+  track('page_view');
+  let formStarted=false;
+  document.addEventListener('focusin',function(e){
+    if(!formStarted&&e.target.closest('#inquiry')){formStarted=true;track('form_start')}
+  });
+  document.addEventListener('click',function(e){
+    const a=e.target.closest('a[href]');if(!a)return;
+    const h=a.getAttribute('href')||'';
+    if(h.includes('#permintaan')||h.includes('offer=')||h.includes('/audit-video-reels'))track('cta_click');
+  });
+})();
+</script>
+</body></html>
