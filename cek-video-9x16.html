@@ -96,7 +96,7 @@ input.addEventListener("change",()=>{
  };
  video.onerror=()=>{if(active===seq)showError("Format/codec video tidak dapat dibuka di browser ini. Coba MP4 H.264 yang kompatibel.")};
  video.src=currentURL;
- deadline=setTimeout(()=>{if(active===seq&&!result.hidden===false){showError("Pembacaan metadata terlalu lama. Coba file lain atau browser berbeda.")}},12000);
+ deadline=setTimeout(()=>{if(active===seq&&result.hidden){showError("Pembacaan metadata terlalu lama. Coba file lain atau browser berbeda.")}},12000);
  video.load();
 });
 window.addEventListener("pagehide",cleanup,{once:true});
