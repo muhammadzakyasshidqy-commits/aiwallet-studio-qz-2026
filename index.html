@@ -48,7 +48,7 @@ button{border:0;border-radius:11px;padding:15px 20px;background:var(--accent);co
 <input style="position:absolute;left:-9999px;opacity:0" aria-hidden="true" tabindex="-1" name="website" autocomplete="off">
 <label class="consent"><input type="checkbox" name="consent_to_contact" required><span>Saya setuju data kontak digunakan hanya untuk menanggapi permintaan proposal ini.</span></label>
 <button type="submit">Ajukan proposal proyek</button><div id="status" role="status" aria-live="polite"></div></form>
-<p class="muted" style="font-size:12px">Informasi kontak disimpan secara privat. Tidak ada pembayaran atau langganan otomatis dari formulir ini.</p></section></div>
+<p class="muted" style="font-size:12px">Informasi kontak disimpan secara privat. Tidak ada pembayaran atau langganan otomatis dari formulir ini.</p><p class="muted" style="font-size:12px">Pengukuran kunjungan dan klik hanya berupa jumlah agregat; tanpa cookie, ID pengunjung, atau alamat IP tersimpan.</p></section></div>
 <footer>AIWallet Studio · Permintaan penawaran layanan digital · Tidak berafiliasi dengan Midtrans atau Supabase.</footer><section style="max-width:1120px;margin:40px auto;padding:30px 20px;border-top:1px solid #39546b"><h2>Alat & panduan gratis</h2><p>Teknik praktis untuk mengaudit checkout sebelum membeli jasa.</p><p><a href="midtrans-webhook-checklist.html">Panduan webhook Midtrans</a> · <a href="kalkulator-checkout.html">Kalkulator biaya checkout gagal</a></p><p><a href="cek-video-9x16.html">Cek rasio video TikTok/Reels/Shorts secara lokal — alat gratis tanpa upload</a></p></section><section id="paket-kecil" style="max-width:1120px;margin:40px auto;padding:26px 20px;border:1px solid #31556c;border-radius:16px;background:#0d2535"><p style="color:#84dec3;font-weight:700">LAYANAN SCOPE KECIL · TANPA BIAYA AWAL UNTUK KONSULTASI BRIEF</p><h2 style="font-size:clamp(24px,4vw,36px)">Bereskan satu bug website, API, atau checkout</h2><p>Mulai <strong>Rp250.000</strong> untuk satu masalah yang dapat direproduksi dan dituntaskan dengan perubahan terbatas. Harga final tergantung brief, akses aman dan kriteria penerimaan yang disepakati; tidak berlaku untuk proyek besar atau kebutuhan produksi berisiko tanpa evaluasi.</p><ul><li>Perbaikan validasi formulir / request API kecil</li><li>Audit satu skenario webhook pembayaran (tanpa mengubah transaksi riil)</li><li>Perbaikan bug frontend / CSS responsif yang terukur</li><li>Hasil: ringkasan perubahan dan pengujian</li></ul><p>Alur: kirim error dan lingkungan → kami konfirmasi scope, harga dan tenggat → sepakati pembayaran resmi → pengerjaan dan verifikasi. Jangan kirim token, private key atau data pelanggan.</p><a href="#permintaan" style="display:inline-block;background:#65e2bf;padding:13px 19px;border-radius:10px;color:#052824;font-weight:800;text-decoration:none">Minta harga untuk 1 bug</a></section><section id="produk-qa" style="max-width:1120px;margin:38px auto;padding:25px;border:1px solid #426276;border-radius:14px"><h2>Base USDC Receipt Guard v1.1</h2><p>Verifikasi read-only transfer USDC Base. 46 tes otomatis lulus, cakupan tes 89%. Bukan audit keamanan independen atau checkout lengkap.</p><p><a href="base-usdc-receipt-guard.html">Lihat bukti QA dan ajukan permintaan lisensi / integrasi</a></p></section><section id="video-editing" class="card" style="margin-top:25px"><span class="chip">JASA KREATIF</span><h2>Video editing pendek untuk Reels & Shorts</h2><p class="muted">Editing dari footage milik klien. Subtitle diperiksa manual, audio dirapikan, dan motion dipakai seperlunya. Pilot satu video 20–30 detik mulai Rp250.000. Tidak ada janji views.</p><p><a href="video-editing.html">Lihat detail pekerjaan, contoh kanal kreator dan ketentuan pilot</a></p><p><a href="https://aiwallet-cloud-studio.higgsfield.app/audit-video-reels" rel="noopener noreferrer" style="font-weight:800;color:#51e0c2">Perlu audit Reels/Shorts sebelum publikasi? Lihat layanan audit Rp249.000 →</a></p></section></main>
 <script>
 document.getElementById("inquiry").addEventListener("submit",async function(ev){
@@ -91,11 +91,12 @@ document.getElementById("inquiry").addEventListener("submit",async function(ev){
     });
     const out=await response.json().catch(()=>({}));
     if(!response.ok||out.ok!==true)throw new Error("Permintaan belum berhasil disimpan.");
-    form.reset();
+    form.reset();if(window.aiwalletTrackFunnel)window.aiwalletTrackFunnel("form_success");
     status.textContent=out.duplicate===true?
       "Permintaan identik sudah tercatat. Tidak ada pembayaran dibuat.":
       "Permintaan tersimpan. Tim AIWallet akan menilai dan membalas jika layanan sesuai. Belum ada tagihan.";
   }catch(err){
+    if(window.aiwalletTrackFunnel)window.aiwalletTrackFunnel("form_error");
     status.textContent="Sistem kontak sementara tidak menerima permintaan. Belum ada data yang dianggap terkirim.";
     addEmailFallback();
   }finally{button.disabled=false;}
@@ -104,4 +105,28 @@ const requestedOffer=new URLSearchParams(location.search).get("offer");
 const serviceSelect=document.querySelector('select[name="service"]');
 if(serviceSelect&&requestedOffer==="video-editing")serviceSelect.value="video_editing_pilot";
 if(serviceSelect&&requestedOffer==="receipt-guard")serviceSelect.value="receipt_guard_review";
-</script><script data-offer-prefill="receipt-guard">if(new URLSearchParams(location.search).get("offer")==="receipt-guard"){let el=document.querySelector('textarea[name="project_brief"]');if(el&&!el.value.trim())el.value="Saya tertarik Base USDC Receipt Guard v1.1. Mohon informasi lisensi, batas penggunaan, dan opsi integrasi ke sistem saya."}</script><script>if(new URLSearchParams(location.search).get("offer")==="video-editing"){let f=document.querySelector('textarea[name="project_brief"]');if(f&&!f.value.trim())f.value="Saya ingin pilot video vertikal 20–30 detik (Rp250.000), dengan footage yang saya sediakan. Audiens, gaya dan tenggat: ...";}</script></body></html>
+</script><script data-offer-prefill="receipt-guard">if(new URLSearchParams(location.search).get("offer")==="receipt-guard"){let el=document.querySelector('textarea[name="project_brief"]');if(el&&!el.value.trim())el.value="Saya tertarik Base USDC Receipt Guard v1.1. Mohon informasi lisensi, batas penggunaan, dan opsi integrasi ke sistem saya."}</script><script>if(new URLSearchParams(location.search).get("offer")==="video-editing"){let f=document.querySelector('textarea[name="project_brief"]');if(f&&!f.value.trim())f.value="Saya ingin pilot video vertikal 20–30 detik (Rp250.000), dengan footage yang saya sediakan. Audiens, gaya dan tenggat: ...";}</script>
+<script data-aiwallet-funnel="v1">
+/* AIWALLET_ANONYMOUS_FUNNEL_V1: counts only fixed event names; no cookies or identity. */
+(function(){
+  const endpoint='https://aiwallet-cloud-studio.higgsfield.app/api/funnel/event';
+  const page="github_home";
+  function track(event){
+    if(!['page_view','cta_click','form_start','form_success','form_error'].includes(event))return;
+    fetch(endpoint,{method:'POST',mode:'cors',credentials:'omit',keepalive:true,
+      headers:{'content-type':'application/json'},body:JSON.stringify({page,event})}).catch(()=>{});
+  }
+  window.aiwalletTrackFunnel=track;
+  track('page_view');
+  let formStarted=false;
+  document.addEventListener('focusin',function(e){
+    if(!formStarted&&e.target.closest('#inquiry')){formStarted=true;track('form_start')}
+  });
+  document.addEventListener('click',function(e){
+    const a=e.target.closest('a[href]');if(!a)return;
+    const h=a.getAttribute('href')||'';
+    if(h.includes('#permintaan')||h.includes('offer=')||h.includes('/audit-video-reels'))track('cta_click');
+  });
+})();
+</script>
+</body></html>
